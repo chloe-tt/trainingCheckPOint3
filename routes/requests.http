@@ -1,0 +1,61 @@
+###POST AN EVENT - //Je veux pouvoir créer une nouvelle événement.
+POST http://localhost:3000/api/events
+content-type: application/json
+
+{
+  "name": "test1",
+  "description": "NRGYBox style",
+  "picture": "https://i.huffpost.com/gen/2692554/images/o-CUTE-KITTENS-facebook.jpg"
+}
+
+###GET by id Je veux pouvoir consulter un événement en renseignant son id dans l'url (justees données propres, pas les activités associées).
+GET http://localhost:3000/api/events/1
+
+###POST activity and get the event
+POST http://localhost:3000/api/events/activity
+content-type: application/json
+
+{
+  "title": "Si ça marche, c'est une victoire !",
+  "description": "Test de la création de la première activité",
+  "type": "This is a test",
+  "picture": "https://pbs.twimg.com/profile_images/766520598751174657/Tg96CK_Y_400x400.jpg",
+  "event_id": 1
+}
+
+###GET all activities linked to an event
+GET http://localhost:3000/api/events/1/activity
+
+###DELETE an event
+DELETE http://localhost:3000/api/events/3
+
+###UPDATE an event
+PUT http://localhost:3000/api/events/2
+content-type: application/json
+
+{
+  
+  "name": "modify event test",
+  "description": "test modification commentaire description",
+  "picture": "https://remeng.rosselcdn.net/sites/"
+}
+
+### DELETE ACTIVITY LINK TO AN EVENT
+DELETE http://localhost:3000/api/events/1/activity/2
+
+###PUT  Je veux modifier une activité d'un événement.
+PUT http://localhost:3000/api/events/1/activity/3
+content-type: application/json
+
+{
+  "title": " OMG Si ça marche encore, on est juste trop fort !!",
+  "type": "this is awsome",
+  "event_id": 1
+}
+
+
+###Recupérer tous les événements filtrés par nom
+GET http://localhost:3000/api/events/?name=test1
+
+###Recupérer tous les activité par titre ou type
+GET http://localhost:3000/api/events/activity
