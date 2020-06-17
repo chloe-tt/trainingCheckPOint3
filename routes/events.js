@@ -146,6 +146,7 @@ router.get("/", (req, res) => {
 
   if(name){
     connection.query("SELECT * FROM event WHERE name = ?", [name], (err, results) => {
+      console.log(req.query)
       if (err) {
         res.status(500).send(err);
       }
@@ -192,6 +193,25 @@ router.get("/activity", (req, res) => {
         else {
             res.json(results);
         }
+    });
+  }
+});
+
+// 10. get all activities filtered by title == a mettre su run nouveau fichier
+router.get('/', (req, res) => {
+  const { title } = req.query;
+
+  if(title){
+    connection.query('SELECT * FROM activity WHERE title = ?', [title], (err, results) => {
+      if(err){
+        res.status(500).send(err);
+      }
+      else if(results.length === 0){
+        res.status(404).send('Evénement non trouvé');
+      }
+      else {
+        res.status(200).json(results);
+      }
     });
   }
 });
